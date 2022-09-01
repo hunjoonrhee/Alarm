@@ -4,55 +4,64 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AlarmTest {
     @Test
-    void checkNumberPeopleTestforUnder30(){
+    void checkNumberPeopleTestforAlarmLevelRed(){
         //GIVEN
         int n = 30;
-        //WHEN
-        String actual = Alarm.checkNumberPeople(n);
-        //THEN
-        assertEquals("Maximale Personenzahl nicht überschritten", actual);
-
-    }
-
-    @Test
-    void checkNumberPeopleTestforUpper30(){
-        //GIVEN
-        int n = 31;
-        //WHEN
-        String actual = Alarm.checkNumberPeople(n);
-        //THEN
-        assertEquals("Zu viele Personen", actual);
-
-    }
-
-    @Test
-    void defineAlarmLevelTestforRed(){
-        //GIVEN
         String color = "rot";
         //WHEN
-        String actual = Alarm.defineAlarmLevel(color);
+        String actual = Alarm.checkNumberPeople(n, color);
         //THEN
         assertEquals("keine Personen erlaubt", actual);
 
     }
+
     @Test
-    void defineAlarmLevelTestforYellow(){
+    void checkNumberPeopleTestforAlarmLevelYellowAndUnder30(){
         //GIVEN
+        int n = 30;
         String color = "gelb";
         //WHEN
-        String actual = Alarm.defineAlarmLevel(color);
+        String actual = Alarm.checkNumberPeople(n, color);
         //THEN
-        assertEquals("max. 30 Personen erlaubt", actual);
+        assertEquals("max. 30 Personen erlaubt. Maximale Personenzahl ist nicht überschritten.", actual);
 
     }
+
     @Test
-    void defineAlarmLevelTestforGreen(){
+    void checkNumberPeopleTestforAlarmLevelYellowAndUpper30(){
         //GIVEN
+        int n = 31;
+        String color = "gelb";
+        //WHEN
+        String actual = Alarm.checkNumberPeople(n, color);
+        //THEN
+        assertEquals("max. 30 Personen erlaubt. Zu viele Personen.", actual);
+
+    }
+
+    @Test
+    void checkNumberPeopleTestforAlarmLevelGreenAndUnder60(){
+        //GIVEN
+        int n = 60;
         String color = "grün";
         //WHEN
-        String actual = Alarm.defineAlarmLevel(color);
+        String actual = Alarm.checkNumberPeople(n, color);
         //THEN
-        assertEquals("max. 60 Personen erlaubt", actual);
+        assertEquals("max. 60 Personen erlaubt. Maximale Personenzahl ist nicht überschritten.", actual);
 
     }
+
+    @Test
+    void checkNumberPeopleTestforAlarmLevelGreenAndUpper60(){
+        //GIVEN
+        int n = 61;
+        String color = "grün";
+        //WHEN
+        String actual = Alarm.checkNumberPeople(n, color);
+        //THEN
+        assertEquals("max. 60 Personen erlaubt. Zu viele Personen.", actual);
+
+    }
+
+
 }
